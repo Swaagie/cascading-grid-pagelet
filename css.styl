@@ -1,0 +1,46 @@
+.block
+  display: table
+  float: left
+  min-height: 1px
+  overflow: hidden
+  padding: 10px
+
+  for i in (1..12)
+    &.x{i}
+      width: i * (100%/12) - 2
+
+    &.y{i}
+      height: i * (100%/12) - 2
+
+.inner-block
+  background: orange
+  border-radius: 5px
+  display: table-cell
+  vertical-align: middle
+  height: 100%
+  overflow: hidden
+  position: relative
+  text-shadow: 0 1px 2px rgba(40, 40, 40, .3)
+  width: 100%
+
+  a
+    color: white
+    display: block
+    font-size: 24px
+    text-align: center
+    width: 100%
+
+  &:hover
+    color: white
+
+    & .caption
+      display: block
+
+.caption
+  absolute: bottom 0 left 0
+  border-bottom-left-radius: 5px
+  border-bottom-right-radius: 5px
+  background: rgba(40, 40, 40, .7)
+  color: white
+  padding: 5px
+  width: 100%

@@ -1,0 +1,16 @@
+<section class="blocks" style="height:{{dimension.height}};width:{{dimension.width}}">
+{{#each blocks}}
+  <div class="block y{{height}} x{{width}}">
+    <div class="inner-block">
+      <a href="{{link}}">
+        {{title}}
+      </a>
+      <span class="caption animated fadeInUp gone">
+        {{#each hover}}
+          <s class="ss-icon ss-{{icon}}"></s> {{n}} {{caption}}
+        {{/each}}
+      </span>
+    </div>
+  </div>
+{{/each}}
+</section>
