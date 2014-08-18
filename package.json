@@ -1,0 +1,30 @@
+{
+  "name": "cascading-grid-pagelet",
+  "version": "0.0.0",
+  "description": "Subjects and/or titles encapsulated by grid blocks, with either images or colors as background",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Swaagie/cascading-grid-pagelet.git"
+  },
+  "keywords": [
+    "layout",
+    "grid",
+    "cascading",
+    "subject",
+    "title",
+    "image"
+  ],
+  "author": "Martijn Swaagman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Swaagie/cascading-grid-pagelet/issues"
+  },
+  "homepage": "https://github.com/Swaagie/cascading-grid-pagelet",
+  "dependencies": {
+    "pagelet": "^0.7.2"
+  }
+}
