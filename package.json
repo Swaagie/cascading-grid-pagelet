@@ -26,6 +26,8 @@
   "homepage": "https://github.com/Swaagie/cascading-grid-pagelet",
   "dependencies": {
     "handlebars": "^2.0.0-alpha.4",
-    "pagelet": "^0.7.2"
+    "knuth-shuffle": "^1.0.0",
+    "pagelet": "^0.7.2",
+    "r...e": "^0.2.0"
   }
 }

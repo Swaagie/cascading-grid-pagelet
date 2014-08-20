@@ -1,6 +1,15 @@
 'use strict';
 
-require('pagelet').extend({
+var Pagelet = require('pagelet')
+  , range = require('r...e')
+  , shuffle = require('knuth-shuffle').knuthShuffle
+  , pagelet;
+
+//
+// Extend the default pagelet and store the extended instance. This allows
+// the constructor to access the __super__ property.
+//
+pagelet = Pagelet.extend({
   view: 'view.hbs',
   css: 'css.styl',
 
@@ -45,6 +54,32 @@ require('pagelet').extend({
         height: this.height,
         width: this.width
       }
-    })
+    });
+  },
+
+  get random() {
+    return shuffle(range(0, 7).toArray());
+  },
+
+  get bg() {
+    var cascade = this
+      , color, pattern;
+
+    return function bg() {
+      if (!color || !color.length) color = cascade.random;
+      if (!pattern || !pattern.length) pattern = cascade.random;
+
+      return [
+        'bg-pattern-',
+        color.shift(),
+        ' bg-color-',
+        pattern.shift()
+      ].join('');
+    };
+  },
+
+  constructor: function constructor() {
+    pagelet.__super__.constructor.apply(this);
+    this.temper.require('handlebars').registerHelper('bg', this.bg);
   }
 }).on(module);
