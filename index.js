@@ -21,8 +21,15 @@ pagelet = Pagelet.extend({
   height: '600px',
 
   //
+  // Amount of blocks that are displayed.
+  //
+  n: 8,
+
+  //
   // Collection of objects, each object represents one block. Blocks have a
-  // default width and height of (25/3)%. meaning the
+  // default width and height of (25/3)%. Height and width are relative and
+  // dependant on the total height and width. E.g. 12 square blocks of height
+  // and width 1 can be placed horizontal and/or vertical.
   //
   blocks: [{
     title: 'Web frameworks',
@@ -44,12 +51,15 @@ pagelet = Pagelet.extend({
     ]
   }],
 
-  //
-  // Called on GET.
-  //
+  /**
+   * Called on GET, provide data to render blocks.
+   *
+   * @param {Function} render completion callback.
+   * @api public
+   */
   get: function get(render) {
     render(null, {
-      blocks: this.blocks,
+      blocks: this.blocks.slice(0, this.n),
       dimension: {
         height: this.height,
         width: this.width
@@ -57,10 +67,23 @@ pagelet = Pagelet.extend({
     });
   },
 
+  /**
+   * Generate random array of numbers. Currently 8 blocks are supported.
+   *
+   * @returns {Array} randomly shuffled array.
+   * @api public
+   */
   get random() {
-    return shuffle(range(0, 7).toArray());
+    return shuffle(range(0, this.n - 1).toArray());
   },
 
+  /**
+   * Getter that provides a Handlebars helper function. This will randomly
+   * generate a set of classes used to set a background color and pattern.
+   *
+   * @returns {Function} Handlebars helper.
+   * api public
+   */
   get bg() {
     var cascade = this
       , color, pattern;
@@ -70,7 +93,7 @@ pagelet = Pagelet.extend({
       if (!pattern || !pattern.length) pattern = cascade.random;
 
       return [
-        'bg-pattern-',
+        'bg bg-pattern-',
         color.shift(),
         ' bg-color-',
         pattern.shift()
@@ -78,6 +101,12 @@ pagelet = Pagelet.extend({
     };
   },
 
+  /**
+   * Override the default constructor to register the handlebar
+   * background helper function once.
+   *
+   * @api private
+   */
   constructor: function constructor() {
     pagelet.__super__.constructor.apply(this);
     this.temper.require('handlebars').registerHelper('bg', this.bg);
