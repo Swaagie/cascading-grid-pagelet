@@ -108,7 +108,7 @@ pagelet = Pagelet.extend({
    * @api private
    */
   constructor: function constructor() {
-    pagelet.__super__.constructor.apply(this);
+    pagelet.__super__.constructor.apply(this, arguments);
     this.temper.require('handlebars').registerHelper('bg', this.bg);
   }
 }).on(module);
