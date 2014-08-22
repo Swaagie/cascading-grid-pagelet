@@ -1,6 +1,6 @@
 {
   "name": "cascading-grid-pagelet",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Subjects and/or titles encapsulated by grid blocks, with either images or colors as background",
   "main": "index.js",
   "scripts": {
